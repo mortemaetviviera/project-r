@@ -1,0 +1,81 @@
+/* Floating Navigation Bar */
+.floating-nav-container {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  width: max-content;
+  max-width: calc(100% - 2rem);
+  pointer-events: auto;
+  transition: bottom 0.3s ease, top 0.3s ease;
+}
+
+.floating-nav-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.4rem 0.6rem;
+  border-radius: 9999px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.55);
+}
+
+.floating-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.95rem;
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #94A3B8;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.floating-nav-link:hover {
+  color: #f2f2f2;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.floating-nav-link.active {
+  color: #f2f2f2;
+  background: rgba(164, 125, 171, 0.32);
+  border: 1px solid rgba(164, 125, 171, 0.5);
+  box-shadow: 0 0 14px rgba(164, 125, 171, 0.35);
+}
+
+.nav-icon {
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+/* Mobile: Bottom Navigation Bar to prevent overlapping with top back buttons */
+@media (max-width: 768px) {
+  .floating-nav-container {
+    top: auto;
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .floating-nav-pill {
+    padding: 0.35rem 0.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .floating-nav-link {
+    padding: 0.45rem 0.75rem;
+    font-size: 0.78rem;
+  }
+
+  .nav-icon {
+    font-size: 0.85rem;
+  }
+}

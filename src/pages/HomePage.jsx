@@ -1,16 +1,18 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/HomePage.css';
 
 const HomePage = () => {
-  const [scrollY, setScrollY] = useState(0);
+  const heroBgRef = useRef(null);
 
   useEffect(() => {
     let ticking = false;
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          setScrollY(window.scrollY);
+          if (heroBgRef.current) {
+            heroBgRef.current.style.transform = `translate3d(0, ${window.scrollY * 0.5}px, 0)`;
+          }
           ticking = false;
         });
         ticking = true;
@@ -29,8 +31,8 @@ const HomePage = () => {
 
       <section className="mntn-hero">
         <div
+          ref={heroBgRef}
           className="mntn-hero-bg"
-          style={{ transform: `translateY(${scrollY * 0.5}px)` }}
         ></div>
         <div className="mntn-hero-overlay"></div>
         <div className="mntn-hero-content">

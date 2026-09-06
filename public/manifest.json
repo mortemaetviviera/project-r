@@ -1,0 +1,24 @@
+{
+  "name": "LYCORIS — Bonjour Mon Amour",
+  "short_name": "LYCORIS",
+  "description": "Personal study portal and academic course archive for luv",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#030811",
+  "theme_color": "#030811",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/pwa-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "48x46",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

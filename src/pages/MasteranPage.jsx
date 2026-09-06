@@ -1,10 +1,11 @@
-﻿import React from 'react';
+﻿import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 const semestersData = [
   {
     id: 1,
     title: 'Semester 1',
+    category: 'tingkat1',
     link: 'https://drive.google.com/drive/folders/1rdH8K26B8K7yNtLd0F_pBulPAbGSc59N?usp=drive_link',
     subjects: [
       'Bahasa Inggris III', 'Pendidikan Agama Islam', 'Kalkulus I', 'Kalkulus II',
@@ -15,6 +16,7 @@ const semestersData = [
   {
     id: 2,
     title: 'Semester 2',
+    category: 'tingkat1',
     link: 'https://drive.google.com/drive/folders/1JZ9Mj6NsRL8aofRioztzT6ulAU39UIM5?usp=drive_link',
     subjects: [
       'Kimia', 'Aljabar Linear', 'Matematika Teknik', 'Elektronika Dasar',
@@ -25,6 +27,7 @@ const semestersData = [
   {
     id: 3,
     title: 'Semester 3',
+    category: 'tingkat2',
     link: 'https://drive.google.com/drive/folders/134rmFP85794N0D-9Y2XHnPyHtsK9Q0I8?usp=drive_link',
     subjects: [
       'Struktur Data', 'Multimedia', 'Sistem Digital', 'Etika Profesi',
@@ -37,6 +40,7 @@ const semestersData = [
   {
     id: 4,
     title: 'Semester 4',
+    category: 'tingkat2',
     link: 'https://drive.google.com/drive/folders/1lNS5iRCK_qUxZCm2dl8lQOMXZy4wBqQf?usp=drive_link',
     subjects: [
       'Organisasi dan Arsitektur Komputer', 'Sistem Basis Data', 'Probabilitas dan Statistika',
@@ -48,6 +52,7 @@ const semestersData = [
   {
     id: 5,
     title: 'Semester 5',
+    category: 'tingkat3',
     link: 'https://drive.google.com/drive/folders/15T6t47tY2pI32gEBS-wHdifJnVhKPFRe?usp=drive_link',
     subjects: [
       'Rangkaian Listrik', 'Pemrograman Berorientasi Objek (N)', 'Pemrograman Perangkat Bergerak',
@@ -60,6 +65,7 @@ const semestersData = [
   {
     id: 6,
     title: 'Semester 6',
+    category: 'tingkat3',
     link: 'https://drive.google.com/drive/folders/1vmWBhgbhE3Yb6OLyCmuIUOXEtyPcts_H?usp=drive_link',
     subjects: [
       'Kuliah Kerja Nyata (KKN)', 'Metodologi Penelitian', 'Kriptografi', 'Pengolahan Sinyal (N)',
@@ -71,6 +77,7 @@ const semestersData = [
   {
     id: 7,
     title: 'Semester 7',
+    category: 'tingkat4',
     link: null,
     customMessage: 'lagi berjalan euy',
     subjects: []
@@ -78,6 +85,7 @@ const semestersData = [
   {
     id: 8,
     title: 'Semester 8',
+    category: 'tingkat4',
     link: null,
     customMessage: 'beloman nanti yee',
     subjects: []
@@ -85,6 +93,7 @@ const semestersData = [
   {
     id: 'KP',
     title: 'Kerja Praktik',
+    category: 'projects',
     link: 'https://drive.google.com/drive/folders/1fnP_Eii7z8yZX9U1jdZRgOOLyU_JS5aw?usp=sharing',
     customMessage: 'masih nyari file yang hilang',
     subjects: ['laporan kelompok', 'laporan pribadi', 'persuratan']
@@ -92,80 +101,219 @@ const semestersData = [
   {
     id: 'CP',
     title: 'Capstone',
+    category: 'projects',
     link: null,
     customMessage: 'neraka terakhir masih on going',
-    subjects: [
-      'c100', 'c200', 'c300'
-    ]
+    subjects: ['c100', 'c200', 'c300']
   }
 ];
 
+const categoryTabs = [
+  { id: 'all', label: 'Semua' },
+  { id: 'tingkat1', label: 'Tahun 1 (Semester 1-2)' },
+  { id: 'tingkat2', label: 'Tahun 2 (Semester 3-4)' },
+  { id: 'tingkat3', label: 'Tahun 3 (Semester 5-6)' },
+  { id: 'tingkat4', label: 'Tahun 4 (Semester 7-8)' },
+  { id: 'projects', label: 'KP & Capstone' }
+];
+
 const MasteranPage = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [activeCategory, setActiveCategory] = useState('all');
+  const [copiedId, setCopiedId] = useState(null);
+
+  const cleanQuery = searchQuery.trim().toLowerCase();
+
+  const handleCopyLink = (id, link) => {
+    if (!link) return;
+    navigator.clipboard.writeText(link).then(() => {
+      setCopiedId(id);
+      setTimeout(() => setCopiedId(null), 2000);
+    });
+  };
+
+  const filteredSemesters = useMemo(() => {
+    return semestersData.filter((semester) => {
+      // Category check
+      if (activeCategory !== 'all' && semester.category !== activeCategory) {
+        return false;
+      }
+
+      // Search query check
+      if (!cleanQuery) return true;
+
+      const titleMatch = semester.title.toLowerCase().includes(cleanQuery);
+      const subjectMatch = semester.subjects.some(sub => sub.toLowerCase().includes(cleanQuery));
+      const messageMatch = semester.customMessage && semester.customMessage.toLowerCase().includes(cleanQuery);
+
+      return titleMatch || subjectMatch || messageMatch;
+    });
+  }, [cleanQuery, activeCategory]);
+
   return (
     <div className="modules-page animate-fade-in">
-      <img 
-        className="modules-bg" 
-        src="/gambar-7.jpeg" 
-        alt="Masteran background" 
+      <img
+        className="modules-bg"
+        src="/gambar-7.jpeg"
+        alt="Masteran background"
       />
-      <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', background: 'linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(4,11,22,0.9) 100%)', boxShadow: 'inset 0 0 100px rgba(0,0,0,0.8)', zIndex: -1, pointerEvents: 'none' }}></div>
-      
+      <div
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(4,11,22,0.9) 100%)',
+          boxShadow: 'inset 0 0 100px rgba(0,0,0,0.8)',
+          zIndex: -1,
+          pointerEvents: 'none'
+        }}
+      />
+
       <div className="header-nav">
         <Link to="/" className="btn btn-secondary">
           &larr; balik ke page sebelumnya
         </Link>
       </div>
 
-      <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <h1 className="modules-title" style={{ marginBottom: '1rem', textShadow: '0 8px 20px rgba(0, 0, 0, 0.8), 0 0 30px rgba(164, 125, 171, 0.6)' }}>
+      <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+        <h1 className="modules-title" style={{ marginBottom: '1rem', textShadow: '0 8px 20px rgba(0, 0, 0, 0.8), 0 0 30px rgba(164, 125, 171, 0.6)' }}>
           MASTERAN PUNYA KU NIEH
         </h1>
-        <p style={{ color: '#f2f2f2', maxWidth: '650px', margin: '0 auto', fontSize: '1.1rem', lineHeight: '1.6', textShadow: '0 2px 5px rgba(0, 0, 0, 0.8)' }}>
+        <p style={{ color: '#f2f2f2', maxWidth: '650px', margin: '0 auto', fontSize: '1.05rem', lineHeight: '1.6', textShadow: '0 2px 5px rgba(0, 0, 0, 0.8)' }}>
           cause of different curriculum, jadinya banyak yang beda tiap semesternya. tinggal cari-cari dah tuh mana matkul yang lagi kamu ambil. isinya dah jadi zip and sizenya beda-beda hehe. yaa siapa tau kepake luv nieh masteran.
         </p>
       </div>
 
-      <div className="masteran-bento">
-        {semestersData.map((semester) => (
-          <div className="bento-box" key={semester.id}>
-            <div className="bento-header">
-              <div className="bento-title-area">
-                <div className="group-icon" style={{ backgroundColor: '#A47DAB', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '56px', height: '56px' }}>
-                  <span style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#f2f2f2' }}>{semester.id}</span>
+      {/* Live Search & Filter Controls */}
+      <div className="search-filter-container">
+        <div className="search-input-wrapper">
+          <span className="search-icon">🔍</span>
+          <input
+            type="text"
+            className="search-input"
+            placeholder="cari matkul sini"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            aria-label="Cari mata kuliah"
+          />
+          {searchQuery && (
+            <button
+              type="button"
+              className="search-clear-btn"
+              onClick={() => setSearchQuery('')}
+              title="Hapus pencarian"
+            >
+              ✕
+            </button>
+          )}
+        </div>
+
+        <div className="category-tabs">
+          {categoryTabs.map((tab) => (
+            <button
+              key={tab.id}
+              type="button"
+              className={`category-tab-btn ${activeCategory === tab.id ? 'active' : ''}`}
+              onClick={() => setActiveCategory(tab.id)}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Results Count Banner if searching */}
+      {cleanQuery && (
+        <div className="search-results-banner">
+          Menampilkan hasil untuk: <strong>"{searchQuery}"</strong> ({filteredSemesters.length} semester ditemukan)
+        </div>
+      )}
+
+      {/* Bento Grid */}
+      {filteredSemesters.length === 0 ? (
+        <div className="empty-search-state">
+          <div className="empty-emoji">🌸</div>
+          <h3>Gaa Nemu Matkul Itu Luv...</h3>
+          <p>Coba cari dengan kata kunci lain atau pilih tab kategori yang berbeda yaa!</p>
+          <button
+            type="button"
+            className="btn-primary"
+            onClick={() => { setSearchQuery(''); setActiveCategory('all'); }}
+            style={{ marginTop: '1rem', padding: '0.6rem 1.5rem' }}
+          >
+            Tampilkan Semua Matkul
+          </button>
+        </div>
+      ) : (
+        <div className="masteran-bento">
+          {filteredSemesters.map((semester) => (
+            <div className="bento-box" key={semester.id}>
+              <div className="bento-header">
+                <div className="bento-title-area">
+                  <div className="group-icon" style={{ backgroundColor: '#A47DAB', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '56px', height: '56px', borderRadius: '16px' }}>
+                    <span style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#f2f2f2' }}>{semester.id}</span>
+                  </div>
+                  <div style={{ textAlign: 'left' }}>
+                    <h3 style={{ margin: 0, fontSize: '1.25rem', color: '#f2f2f2' }}>{semester.title}</h3>
+                    <p className="text-muted" style={{ fontSize: '0.875rem', margin: '0.25rem 0 0 0' }}>
+                      {semester.subjects.length > 0 ? `${semester.subjects.length} Mata Kuliah` : 'On Progress'}
+                    </p>
+                  </div>
                 </div>
-                <div style={{ textAlign: 'left' }}>
-                  <h3 style={{ margin: 0, fontSize: '1.25rem', color: '#f2f2f2' }}>{semester.title}</h3>
-                  <p className="text-muted" style={{ fontSize: '0.875rem', margin: '0.25rem 0 0 0' }}>
-                    {semester.subjects.length > 0 ? `${semester.subjects.length} Mata Kuliah` : 'On Progress'}
-                  </p>
+
+                <div className="bento-action-buttons">
+                  {semester.link && (
+                    <>
+                      <a
+                        href={semester.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-info"
+                        style={{ textDecoration: 'none', padding: '0.6rem 1rem' }}
+                      >
+                        Buka Drive
+                      </a>
+                      <button
+                        type="button"
+                        onClick={() => handleCopyLink(semester.id, semester.link)}
+                        className="btn-copy-link"
+                        title="Salin Link Google Drive"
+                        aria-label="Salin link Google Drive"
+                      >
+                        {copiedId === semester.id ? '✓ Disalin' : '📋'}
+                      </button>
+                    </>
+                  )}
                 </div>
               </div>
-              {semester.link && (
-                <a href={semester.link} target="_blank" rel="noopener noreferrer" className="btn-info" style={{ textDecoration: 'none', padding: '0.6rem 1rem' }}>
-                  Drive Semester
-                </a>
-              )}
+
+              <div className="bento-subjects">
+                {semester.customMessage ? (
+                  <p style={{ color: '#E2D1E5', fontSize: '0.875rem', margin: '0.5rem 0' }}>
+                    {semester.customMessage}
+                  </p>
+                ) : (
+                  semester.subjects.map((subject, idx) => {
+                    const isMatch = cleanQuery && subject.toLowerCase().includes(cleanQuery);
+                    return (
+                      <div
+                        className={`bento-pill ${isMatch ? 'pill-highlight' : ''}`}
+                        key={idx}
+                      >
+                        {subject}
+                      </div>
+                    );
+                  })
+                )}
+              </div>
             </div>
-            
-            <div className="bento-subjects">
-              {semester.customMessage ? (
-                <p style={{ color: '#E2D1E5', fontSize: '0.875rem', margin: '0.5rem 0' }}>
-                  {semester.customMessage}
-                </p>
-              ) : (
-                semester.subjects.map((subject, idx) => (
-                  <div className="bento-pill" key={idx}>
-                    {subject}
-                  </div>
-                ))
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
 
 export default MasteranPage;
-
