@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const NotFoundPage = () => {
   return (
-    <div 
+    <div
       className="animate-fade-in"
       style={{
         minHeight: '100vh',
@@ -19,7 +19,7 @@ const NotFoundPage = () => {
         overflow: 'hidden'
       }}
     >
-      <div 
+      <div
         style={{
           position: 'absolute',
           width: '400px',
@@ -33,9 +33,9 @@ const NotFoundPage = () => {
           zIndex: 0
         }}
       />
-      
+
       <div style={{ position: 'relative', zIndex: 1, maxWidth: '500px' }}>
-        <div 
+        <div
           style={{
             fontSize: '6rem',
             fontWeight: '800',
@@ -48,7 +48,7 @@ const NotFoundPage = () => {
         >
           404
         </div>
-        <h1 
+        <h1
           style={{
             fontSize: '1.75rem',
             fontWeight: '700',
@@ -56,9 +56,9 @@ const NotFoundPage = () => {
             marginBottom: '1rem'
           }}
         >
-          Waduh, Nyasar Kemana Nih Luv? 🌸
+          nyasar kemana nih luv?
         </h1>
-        <p 
+        <p
           style={{
             fontSize: '0.95rem',
             color: '#94A3B8',
@@ -66,11 +66,11 @@ const NotFoundPage = () => {
             marginBottom: '2rem'
           }}
         >
-          Halaman yang kamu tuju gaa ada atau mungkin salah ketik linknya hehe. Yuk balik ajah ke halaman utama!
+          halamannya gaa ada atau salah ketik linknya nieh. balik homepage euy
         </p>
-        <Link 
-          to="/" 
-          className="btn-primary" 
+        <Link
+          to="/"
+          className="btn-primary"
           style={{
             display: 'inline-flex',
             alignItems: 'center',

@@ -1,0 +1,43 @@
+/* ============================================
+   LogoIcon — LYCORIS brand mark component
+   ============================================ */
+
+.lycoris-logo-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  object-fit: contain;
+  transition: opacity 0.18s ease, transform 0.18s ease, filter 0.18s ease;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Clickable variant */
+.lycoris-logo-icon--clickable {
+  cursor: pointer;
+}
+
+.lycoris-logo-icon--clickable:hover {
+  transform: scale(1.12);
+  filter: drop-shadow(0 0 6px rgba(242, 242, 242, 0.5));
+}
+
+/* Color-specific hover glow */
+.lycoris-logo-icon--clickable.lycoris-logo-icon--red:hover {
+  filter: drop-shadow(0 0 8px rgba(220, 38, 38, 0.65));
+}
+
+.lycoris-logo-icon--clickable.lycoris-logo-icon--purple:hover {
+  filter: drop-shadow(0 0 8px rgba(164, 125, 171, 0.75));
+}
+
+.lycoris-logo-icon--clickable.lycoris-logo-icon--white:hover {
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.45));
+}
+
+/* Flash / swap animation on click */
+.lycoris-logo-icon--flash {
+  opacity: 0;
+  transform: scale(0.82) rotate(-6deg);
+  filter: blur(1px);
+  pointer-events: none;
+}

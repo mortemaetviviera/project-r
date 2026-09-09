@@ -24,6 +24,31 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.55);
 }
 
+.floating-nav-logo-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.2rem 0.25rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.floating-nav-logo-link:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.floating-nav-divider {
+  display: inline-block;
+  width: 1px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+  margin: 0 0.1rem;
+  flex-shrink: 0;
+}
+
+
 .floating-nav-link {
   display: inline-flex;
   align-items: center;
@@ -45,9 +70,10 @@
 
 .floating-nav-link.active {
   color: #f2f2f2;
-  background: rgba(164, 125, 171, 0.32);
-  border: 1px solid rgba(164, 125, 171, 0.5);
-  box-shadow: 0 0 14px rgba(164, 125, 171, 0.35);
+  background: var(--theme-accent-subtle2);
+  border: 1px solid var(--theme-accent-border);
+  box-shadow: 0 0 14px var(--theme-accent-subtle2);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .nav-icon {

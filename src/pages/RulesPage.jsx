@@ -1,13 +1,16 @@
-﻿import React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import LogoIcon from '../components/LogoIcon';
+import '../styles/RulesPage.css';
 
 const RulesPage = () => {
   return (
     <div className="app-container animate-fade-in" style={{ backgroundColor: '#040B16', color: '#f2f2f2', minHeight: '100vh', overflowX: 'hidden' }}>
-      <div className="header-nav">
+      <div className="header-nav header-nav--split">
         <Link to="/" className="btn btn-secondary">
           &larr; balik ke page sebelumnya
         </Link>
+        <LogoIcon size={36} staticColor={false} />
       </div>
       <section className="hero-section">
         <div 
@@ -72,7 +75,7 @@ const RulesPage = () => {
         <div className="cta-overlay"></div>
         <h3 style={{ marginBottom: '0.5rem', color: '#f2f2f2', fontSize: '1.5rem', zIndex: 1, position: 'relative' }}>Kalo dah baca semua yang diatas nieh...</h3>
         <p style={{ marginBottom: '2rem', fontSize: '0.75rem', color: '#E2E8F0', zIndex: 1, position: 'relative' }}>klik button dibawah buat mulai belajar yaa</p>
-        <Link to="/modules" style={{ backgroundColor: '#A47DAB', color: '#f2f2f2', padding: '0.6rem 1.5rem', borderRadius: '4px', border: 'none', fontSize: '0.75rem', cursor: 'pointer', fontWeight: '600', zIndex: 1, position: 'relative', textDecoration: 'none', display: 'inline-block' }}>KLIK SINI LUV</Link>
+        <Link to="/modules" style={{ backgroundColor: 'var(--theme-accent)', color: 'var(--theme-accent-text, #f2f2f2)', padding: '0.6rem 1.5rem', borderRadius: '4px', border: 'none', fontSize: '0.75rem', cursor: 'pointer', fontWeight: '600', zIndex: 1, position: 'relative', textDecoration: 'none', display: 'inline-block', transition: 'background-color 0.3s ease, color 0.3s ease' }}>KLIK SINI LUV</Link>
       </section>
     </div>
   );

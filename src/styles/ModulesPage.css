@@ -1,0 +1,424 @@
+/* ============================================================
+   ModulesPage.css — Styles for the /modules route
+   ============================================================ */
+
+/* ─── Page Shell ─── */
+.modules-page {
+  position: relative;
+  min-height: 100vh;
+  padding: 6.5rem 1.5rem 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modules-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6;
+  z-index: -1;
+  pointer-events: none;
+  filter: brightness(0.6);
+}
+
+.header-nav {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  z-index: 100;
+}
+
+/* Split layout: back button left, logo right */
+.header-nav--split {
+  left: 2rem;
+  right: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modules-title {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2.5rem;
+  color: var(--color-text-light);
+  font-weight: bold;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+/* ─── Module Group ─── */
+.module-group {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 3rem;
+  background: rgba(30, 27, 36, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-radius-lg);
+  padding: 2.5rem;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.group-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.group-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.group-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.group-header h3 {
+  font-size: 1.1rem;
+  color: var(--color-text-light);
+  margin-bottom: 0.25rem;
+}
+
+/* ─── Module Card Grid ─── */
+.modules-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.1rem;
+  width: 100%;
+}
+
+.module-card {
+  min-width: 140px;
+  background: #191B33;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 14px;
+  padding: 1.1rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.module-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(var(--theme-accent-rgb), 0.2) 0%, transparent 60%);
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.3s ease, transform 0.5s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.module-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.module-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px var(--theme-accent-subtle);
+  border-color: var(--theme-accent-border);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.module-card:hover::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.module-card h4 {
+  font-size: 1rem;
+  color: var(--color-text-light);
+  font-weight: 600;
+}
+
+/* ─── Module Actions ─── */
+.module-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  width: 100%;
+}
+
+.btn-small {
+  width: 100%;
+  padding: 0.5rem 0.6rem;
+  font-size: 0.75rem;
+  min-height: 35px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.btn-module {
+  background: var(--theme-accent);
+  color: var(--theme-accent-text, var(--color-text-light));
+  border: none;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-module:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--theme-accent-subtle);
+}
+
+.btn-submission {
+  background: var(--theme-accent-subtle);
+  color: var(--color-accent-pink);
+  border: 1px solid var(--theme-accent-border);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-submission:hover {
+  background: var(--theme-accent-subtle2);
+  border-color: var(--theme-accent-border);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* ─── Module Card Completion State ─── */
+.module-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.completion-badge {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--color-text-muted);
+  font-size: 0.65rem;
+  padding: 0.25rem 0.55rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.completion-badge:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--color-text-light);
+}
+
+.completion-badge.completed {
+  background: var(--theme-accent-subtle);
+  border-color: var(--theme-accent-border);
+  color: var(--color-accent-pink);
+  box-shadow: 0 0 10px var(--theme-accent-subtle2);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.module-card.is-completed {
+  border-color: var(--theme-accent-strong);
+  background: #1d1b38;
+  box-shadow: 0 6px 18px var(--theme-accent-subtle);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ─── Progress Dashboard ─── */
+.progress-dashboard {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 2.5rem;
+  background: rgba(25, 27, 51, 0.7);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.progress-dashboard-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.progress-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-text-light);
+}
+
+.progress-subtitle {
+  font-size: 0.85rem;
+  color: var(--color-accent-pink);
+  margin-top: 0.2rem;
+}
+
+.dual-progress-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.track-progress-card {
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 1.1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  transition: transform 0.2s, border-color 0.3s ease;
+}
+
+.track-progress-card:hover {
+  border-color: var(--theme-accent-border);
+  transform: translateY(-2px);
+}
+
+.track-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.track-icon-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.track-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+}
+
+.track-stats {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+
+.track-numbers {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--theme-accent);
+  transition: color 0.3s ease;
+}
+
+.track-percent {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.track-status-text {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-top: -0.1rem;
+}
+
+.progress-track {
+  width: 100%;
+  height: 9px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.figma-fill {
+  background: linear-gradient(90deg, var(--theme-accent) 0%, var(--color-accent-pink) 100%);
+  box-shadow: 0 0 12px var(--theme-accent-glow);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.photoshop-fill {
+  background: linear-gradient(90deg, #0284c7 0%, var(--theme-accent) 100%);
+  box-shadow: 0 0 12px var(--theme-accent-glow);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-reset-progress {
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.btn-reset-progress:hover {
+  color: var(--color-accent-pink);
+}
+
+/* ─── Mobile Responsive ─── */
+@media (max-width: 768px) {
+  .dual-progress-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .modules-page .header-nav {
+    position: static;
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    z-index: 10;
+  }
+
+  .modules-page .header-nav--split {
+    justify-content: space-between;
+    max-width: 900px;
+  }
+
+  .modules-page {
+    padding-top: 1.5rem;
+    padding-bottom: 6.5rem;
+  }
+
+  .modules-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .progress-dashboard {
+    padding: 1.25rem;
+  }
+}

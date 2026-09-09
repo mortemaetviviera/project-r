@@ -1,21 +1,45 @@
-﻿:root {
+/* ============================================================
+   LYCORIS — Global Design Tokens & Base Styles
+   All theme-accent-* vars are injected by LogoColorContext.jsx
+   ============================================================ */
+
+:root {
+  /* ─── Typography ─── */
   --font-family: 'Inter', sans-serif;
-  
-  --color-bg: #0a0c16;
-  --color-surface: #111827;
-  --color-surface-light: #1f2937;
-  --color-text: #f9fafb;
-  --color-text-muted: #9ca3af;
-  --color-primary: #3b82f6;
-  --color-accent: #e879f9;
-  
-  --gradient-primary: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+
+  /* ─── Brand Colour Palette ─── */
+  --color-bg-deep:      #030811;   /* hero / page background */
+  --color-surface:      #040B16;   /* dark section background */
+  --color-surface-card: rgba(25, 27, 51, 0.6); /* glassmorphic cards */
+  --color-surface-nav:  rgba(15, 23, 42, 0.92); /* floating nav */
+
+  --color-primary-purple: #A47DAB; /* Lycoris lavender */
+  --color-accent-pink:    #EDB4C7; /* blush / emphasis */
+  --color-accent-crimson: #dc2626; /* alternate accent */
+
+  --color-text-light:  #f2f2f2;
+  --color-text-muted:  #94A3B8;
+  --color-text-dim:    #CBD5E1;
+
+  /* ─── Gradients ─── */
   --gradient-card: linear-gradient(145deg, rgba(31, 41, 55, 0.8), rgba(17, 24, 39, 0.8));
-  
-  --border-radius: 12px;
+
+  /* ─── Spacing / Shape ─── */
+  --border-radius:    12px;
   --border-radius-lg: 20px;
+
+  /* ─── Dynamic Theme Tokens (overwritten by LogoColorContext.jsx) ─── */
+  /* Defaults = purple so the page is correct before any JS runs */
+  --theme-accent:         #A47DAB;
+  --theme-accent-glow:    rgba(164, 125, 171, 0.4);
+  --theme-accent-subtle:  rgba(164, 125, 171, 0.15);
+  --theme-accent-subtle2: rgba(164, 125, 171, 0.32);
+  --theme-accent-border:  rgba(164, 125, 171, 0.5);
+  --theme-accent-strong:  rgba(164, 125, 171, 0.6);
+  --theme-accent-rgb:     164, 125, 171;
 }
 
+/* ─── CSS Reset ─── */
 * {
   margin: 0;
   padding: 0;
@@ -24,28 +48,33 @@
 
 body {
   font-family: var(--font-family);
-  background-color: var(--color-bg);
-  color: var(--color-text);
+  background-color: var(--color-bg-deep);
+  color: var(--color-text-light);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
 }
 
-/* Utilities */
+/* ─── Base Typography ─── */
+h1, h2, h3, h4 {
+  font-weight: 700;
+  line-height: 1.2;
+}
+h1 { font-size: 3rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+
+/* ─── Global Utilities ─── */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
-.text-center { text-align: center; }
-.text-gradient {
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+.text-center  { text-align: center; }
+.text-muted   { color: var(--color-text-muted); }
 
+/* ─── Global Button Base ─── */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -61,42 +90,31 @@ body {
 }
 
 .btn-primary {
-  background: #A47DAB;
-  color: #f2f2f2;
-  box-shadow: 0 4px 14px 0 rgba(236, 72, 153, 0.39);
+  background: var(--theme-accent);
+  color: var(--theme-accent-text, #f2f2f2);
+  box-shadow: 0 4px 14px 0 var(--theme-accent-glow);
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
 }
-
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(236, 72, 153, 0.5);
+  box-shadow: 0 6px 20px var(--theme-accent-glow);
 }
 
 .btn-secondary {
-  background-color: #A47DAB;
-  color: #f2f2f2;
+  background-color: var(--theme-accent);
+  color: var(--theme-accent-text, #f2f2f2);
   backdrop-filter: blur(10px);
+  transition: background 0.3s ease;
 }
-
 .btn-secondary:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Base Styles */
-h1, h2, h3, h4 {
-  font-weight: 700;
-  line-height: 1.2;
-}
-
-h1 { font-size: 3rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.5rem; }
-
-/* Custom Animations */
+/* ─── Page Enter Fade Animation ─── */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
-
 .animate-fade-in {
   animation: fadeIn 0.6s ease-out forwards;
 }

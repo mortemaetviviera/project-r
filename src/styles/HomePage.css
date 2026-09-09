@@ -29,6 +29,23 @@
   letter-spacing: 2px;
 }
 
+/* Logo + wordmark flex row — Header */
+.mntn-logo-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Logo + wordmark stack — Footer */
+.mntn-footer-logo-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+
 /* Hero Section with Parallax Effect */
 .mntn-hero {
   position: relative;
@@ -215,8 +232,8 @@
 }
 
 .mntn-btn-primary {
-  background-color: #A47DAB; /* Custom purple color */
-  color: #f2f2f2; /* White text */
+  background-color: var(--theme-accent);
+  color: var(--theme-accent-text, #f2f2f2);
   padding: 10px 32px;
   border-radius: 6px;
   font-size: 13px;
@@ -226,13 +243,13 @@
   cursor: pointer;
   border: none;
   margin-top: 10px;
-  transition: all 0.2s ease;
+  transition: all 0.2s ease, background-color 0.3s ease;
 }
 
 .mntn-btn-primary:hover {
   opacity: 0.9;
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(164, 125, 171, 0.4);
+  box-shadow: 0 6px 18px var(--theme-accent-glow);
 }
 
 /* Footer */
@@ -248,8 +265,9 @@
 }
 
 .mntn-footer .mntn-logo {
-  margin-bottom: 16px;
+  margin-bottom: 0;
 }
+
 
 .mntn-footer-desc {
   font-size: 13px;

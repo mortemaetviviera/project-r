@@ -1,5 +1,6 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
+import LogoIcon from './LogoIcon';
 import '../styles/FloatingNav.css';
 
 const navItems = [
@@ -13,6 +14,11 @@ const FloatingNav = () => {
   return (
     <nav className="floating-nav-container" aria-label="Main Navigation">
       <div className="floating-nav-pill">
+        {/* Brand logo — clickable color cycler */}
+        <div className="floating-nav-logo-link" aria-label="Change Theme Color">
+          <LogoIcon size={36} staticColor={false} />
+        </div>
+        <span className="floating-nav-divider" aria-hidden="true" />
         {navItems.map((item) => (
           <NavLink
             key={item.path}

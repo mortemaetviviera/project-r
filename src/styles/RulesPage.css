@@ -1,0 +1,122 @@
+/* ============================================================
+   RulesPage.css — Styles for the /rules route
+   ============================================================ */
+
+/* ─── Section Spacing ─── */
+.rules-section {
+  padding: 5rem 1.5rem;
+}
+
+/* ─── Grid ─── */
+.rules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ─── Rule Card ─── */
+.rule-card {
+  background: #0F172A !important;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-radius-lg);
+  padding: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+/* Animated glowing border (revealed on hover) */
+.rule-card::before {
+  content: '';
+  position: absolute;
+  top: -2px; left: -2px; right: -2px; bottom: -2px;
+  background: linear-gradient(45deg, var(--color-primary-purple), #E5B5C8, #C084FC, var(--color-primary-purple));
+  background-size: 300%;
+  z-index: -1;
+  filter: blur(8px);
+  border-radius: calc(var(--border-radius-lg) + 2px);
+  animation: glowingBorder 6s linear infinite;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+
+/* Dark backdrop behind the border glow */
+.rule-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #0F172A;
+  border-radius: var(--border-radius-lg);
+  z-index: -1;
+}
+
+.rule-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes glowingBorder {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.rule-card:hover {
+  transform: translateY(-5px) scale(1.02);
+}
+
+.rule-card:hover::before {
+  opacity: 1;
+}
+
+/* ─── CTA Section ─── */
+.cta-section {
+  position: relative;
+  padding: 6rem 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.cta-background {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+  z-index: -1;
+  background-size: cover;
+  background-position: center;
+}
+
+.cta-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(4, 11, 22, 0.8);
+  z-index: 0;
+}
+
+/* ─── Mobile Responsive ─── */
+@media (max-width: 768px) {
+  .rules-section {
+    padding: 4rem 5%;
+  }
+
+  .rules-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .cta-section {
+    padding-bottom: calc(6rem + env(safe-area-inset-bottom, 0px));
+  }
+}

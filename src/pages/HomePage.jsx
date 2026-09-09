@@ -1,9 +1,17 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import LogoIcon from '../components/LogoIcon';
+import { useLogoColor } from '../context/LogoColorContext';
 import '../styles/HomePage.css';
 
 const HomePage = () => {
   const heroBgRef = useRef(null);
+  const { currentHex } = useLogoColor();
+
+  const logoTextStyle = {
+    color: currentHex,
+    transition: 'color 0.3s ease',
+  };
 
   useEffect(() => {
     let ticking = false;
@@ -26,7 +34,10 @@ const HomePage = () => {
   return (
     <div className="mntn-container">
       <header className="mntn-header">
-        <div className="mntn-logo">LYCORIS</div>
+        <div className="mntn-logo-group">
+          <LogoIcon size={36} staticColor={false} />
+          <div className="mntn-logo" style={logoTextStyle}>LYCORIS</div>
+        </div>
       </header>
 
       <section className="mntn-hero">
@@ -39,6 +50,9 @@ const HomePage = () => {
           <div className="mntn-hero-subtitle">COMPILATION OF SOMETHING I CANT NAME IT HERE</div>
           <h1 className="mntn-hero-title">BONJOUR MON AMOUR</h1>
           <p style={{ letterSpacing: '1px', fontSize: '14px', fontWeight: '500', color: '#f2f2f2' }}>Ini Apa?? Scroll Ajah Dulu</p>
+          <div style={{ marginTop: '2.5rem' }}>
+            <LogoIcon size={120} staticColor={false} />
+          </div>
         </div>
       </section>
 
@@ -109,7 +123,10 @@ const HomePage = () => {
       </section>
 
       <footer className="mntn-footer">
-        <div className="mntn-logo">LYCORIS</div>
+        <div className="mntn-footer-logo-group">
+          <LogoIcon size={52} staticColor={false} />
+          <div className="mntn-logo" style={logoTextStyle}>LYCORIS</div>
+        </div>
         <p className="mntn-footer-desc">
           napa nama webnya inih?? aku pun bingung kasih namanya apah. so yeah ku taro nama bunga favorit mu ajah
         </p>
