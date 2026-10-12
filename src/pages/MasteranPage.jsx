@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import LogoIcon from '../components/LogoIcon';
 import { triggerHaptic } from '../utils/haptics';
@@ -9,16 +9,39 @@ const MasteranPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
   const [copiedId, setCopiedId] = useState(null);
+  const copyTimeoutRef = useRef(null);
 
   const cleanQuery = searchQuery.trim().toLowerCase();
 
-  const handleCopyLink = (id, link) => {
+  useEffect(() => {
+    return () => {
+      if (copyTimeoutRef.current) clearTimeout(copyTimeoutRef.current);
+    };
+  }, []);
+
+  const handleCopyLink = async (id, link) => {
     if (!link) return;
-    navigator.clipboard.writeText(link).then(() => {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(link);
+      } else {
+        const textArea = document.createElement('textarea');
+        textArea.value = link;
+        textArea.style.position = 'fixed';
+        textArea.style.opacity = '0';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+      }
       triggerHaptic(15); // light confirmation on copy
       setCopiedId(id);
-      setTimeout(() => setCopiedId(null), 2000);
-    });
+      if (copyTimeoutRef.current) clearTimeout(copyTimeoutRef.current);
+      copyTimeoutRef.current = setTimeout(() => setCopiedId(null), 2000);
+    } catch (err) {
+      console.warn('Failed to copy link:', err);
+    }
   };
 
   const filteredSemesters = useMemo(() => {
@@ -68,7 +91,7 @@ const MasteranPage = () => {
       </div>
 
       <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-        <h1 className="modules-title" style={{ marginBottom: '1rem', textShadow: '0 8px 20px rgba(0, 0, 0, 0.8), 0 0 30px rgba(164, 125, 171, 0.6)' }}>
+        <h1 className="modules-title" style={{ marginBottom: '1rem', textShadow: '0 8px 20px rgba(0, 0, 0, 0.8), 0 0 30px var(--theme-accent-strong, rgba(164, 125, 171, 0.6))' }}>
           MASTERAN PUNYA KU NIEH
         </h1>
         <p style={{ color: '#f2f2f2', maxWidth: '650px', margin: '0 auto', fontSize: '1.05rem', lineHeight: '1.6', textShadow: '0 2px 5px rgba(0, 0, 0, 0.8)' }}>
@@ -142,7 +165,7 @@ const MasteranPage = () => {
             <div className="bento-box" key={semester.id}>
               <div className="bento-header">
                 <div className="bento-title-area">
-                  <div className="group-icon" style={{ backgroundColor: '#A47DAB', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '56px', height: '56px', borderRadius: '16px' }}>
+                  <div className="group-icon" style={{ backgroundColor: 'var(--theme-accent, #A47DAB)', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '56px', height: '56px', borderRadius: '16px', transition: 'background-color 0.3s ease' }}>
                     <span style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#f2f2f2' }}>{semester.id}</span>
                   </div>
                   <div style={{ textAlign: 'left' }}>
@@ -181,7 +204,14 @@ const MasteranPage = () => {
 
               <div className="bento-subjects">
                 {semester.customMessage ? (
-                  <p style={{ color: '#E2D1E5', fontSize: '0.875rem', margin: '0.5rem 0' }}>
+                  <p
+                    style={{
+                      color: cleanQuery && semester.customMessage.toLowerCase().includes(cleanQuery) ? 'var(--theme-accent, #E2D1E5)' : '#E2D1E5',
+                      fontSize: '0.875rem',
+                      margin: '0.5rem 0',
+                      fontWeight: cleanQuery && semester.customMessage.toLowerCase().includes(cleanQuery) ? '600' : 'normal'
+                    }}
+                  >
                     {semester.customMessage}
                   </p>
                 ) : (

@@ -15,9 +15,10 @@ const HomePage = () => {
 
   useEffect(() => {
     let ticking = false;
+    let rafId = null;
     const handleScroll = () => {
       if (!ticking) {
-        window.requestAnimationFrame(() => {
+        rafId = window.requestAnimationFrame(() => {
           if (heroBgRef.current) {
             heroBgRef.current.style.transform = `translate3d(0, ${window.scrollY * 0.5}px, 0)`;
           }
@@ -28,7 +29,10 @@ const HomePage = () => {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafId) window.cancelAnimationFrame(rafId);
+    };
   }, []);
 
   return (

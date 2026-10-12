@@ -16,6 +16,12 @@
   cursor: pointer;
 }
 
+.lycoris-logo-icon--clickable:focus-visible {
+  outline: 2px solid var(--theme-accent, #A47DAB);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
 .lycoris-logo-icon--clickable:hover {
   transform: scale(1.12);
   filter: drop-shadow(0 0 6px rgba(242, 242, 242, 0.5));

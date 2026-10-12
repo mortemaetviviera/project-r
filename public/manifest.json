@@ -6,17 +6,17 @@
   "display": "standalone",
   "background_color": "#030811",
   "theme_color": "#030811",
-  "orientation": "portrait-primary",
+  "orientation": "any",
   "icons": [
     {
-      "src": "/pwa-icon.svg",
+      "src": "/logo/logo-purple.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
     },
     {
-      "src": "/favicon.svg",
-      "sizes": "48x46",
+      "src": "/logo/logo-purple.svg",
+      "sizes": "160x160",
       "type": "image/svg+xml",
       "purpose": "any"
     }

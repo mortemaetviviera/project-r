@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
+import React, { createContext, useContext, useState, useCallback, useEffect, useRef } from 'react';
 import { triggerHaptic } from '../utils/haptics';
 
 const COLOR_SEQUENCE = ['white', 'red', 'purple'];
@@ -27,12 +27,20 @@ const LogoColorContext = createContext(null);
 export const LogoColorProvider = ({ children }) => {
   const [colorIndex, setColorIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const timeoutRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
 
   const cycleColor = useCallback(() => {
     if (isAnimating) return;
     triggerHaptic(18); // subtle pulse on logo color change
     setIsAnimating(true);
-    setTimeout(() => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
       setColorIndex((prev) => (prev + 1) % COLOR_SEQUENCE.length);
       setIsAnimating(false);
     }, 180);

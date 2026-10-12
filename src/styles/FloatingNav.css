@@ -68,6 +68,12 @@
   background: rgba(255, 255, 255, 0.08);
 }
 
+.floating-nav-link:focus-visible,
+.floating-nav-logo-link:focus-visible {
+  outline: 2px solid var(--theme-accent, #A47DAB);
+  outline-offset: 2px;
+}
+
 .floating-nav-link.active {
   color: #f2f2f2;
   background: var(--theme-accent-subtle2);

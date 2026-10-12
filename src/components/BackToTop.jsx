@@ -4,12 +4,24 @@ const BackToTop = () => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    let ticking = false;
+    let rafId = null;
+
     const handleScroll = () => {
-      setVisible(window.scrollY > 350);
+      if (!ticking) {
+        rafId = window.requestAnimationFrame(() => {
+          setVisible(window.scrollY > 350);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafId) window.cancelAnimationFrame(rafId);
+    };
   }, []);
 
   const scrollToTop = () => {

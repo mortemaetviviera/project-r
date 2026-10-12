@@ -3,17 +3,9 @@ const STATIC_ASSETS = [
   '/',
   '/index.html',
   '/manifest.json',
-  '/pwa-icon.svg',
-  '/favicon.svg',
-  '/gambar-1.jpeg',
-  '/gambar-2.jpeg',
-  '/gambar-3.jpeg',
-  '/gambar-4.jpeg',
-  '/gambar-5.jpeg',
-  '/gambar-6.jpeg',
-  '/gambar-7.jpeg',
-  '/figma.png',
-  '/adobe.png',
+  '/logo/logo-purple.svg',
+  '/logo/logo-white.svg',
+  '/logo/logo-red.svg',
   '/mntn-hero.png'
 ];
 
@@ -56,8 +48,9 @@ self.addEventListener('fetch', (event) => {
         // Return cached and update in background (Stale-While-Revalidate)
         fetch(event.request)
           .then((networkResponse) => {
-            if (networkResponse && networkResponse.status === 200) {
-              caches.open(CACHE_NAME).then((cache) => cache.put(event.request, networkResponse));
+            if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
+              const responseToCache = networkResponse.clone();
+              caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseToCache));
             }
           })
           .catch(() => {});

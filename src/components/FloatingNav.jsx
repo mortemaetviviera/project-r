@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import LogoIcon from './LogoIcon';
 import '../styles/FloatingNav.css';
 
@@ -27,7 +27,6 @@ const FloatingNav = () => {
               `floating-nav-link ${isActive ? 'active' : ''}`
             }
           >
-            {item.icon && <span className="nav-icon">{item.icon}</span>}
             <span className="nav-label">{item.label}</span>
           </NavLink>
         ))}

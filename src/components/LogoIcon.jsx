@@ -29,12 +29,22 @@ const LogoIcon = ({ staticColor = false, size = 28, className = '' }) => {
     cycleColor();
   };
 
+  const handleKeyDown = (e) => {
+    if (staticColor) return;
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      cycleColor();
+    }
+  };
+
   return (
     <img
       src={src}
       alt="LYCORIS logo"
       width={size}
       height={size}
+      role={staticColor ? undefined : 'button'}
+      tabIndex={staticColor ? undefined : 0}
       className={[
         'lycoris-logo-icon',
         !staticColor ? 'lycoris-logo-icon--clickable' : '',
@@ -45,6 +55,7 @@ const LogoIcon = ({ staticColor = false, size = 28, className = '' }) => {
         .filter(Boolean)
         .join(' ')}
       onClick={handleClick}
+      onKeyDown={handleKeyDown}
       draggable={false}
       aria-label={staticColor ? 'LYCORIS logo' : `LYCORIS logo (${currentColor}, click to change)`}
       title={staticColor ? 'LYCORIS' : 'Klik untuk ganti warna logo!'}
