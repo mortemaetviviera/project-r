@@ -1,0 +1,568 @@
+/* ============================================================
+   LeadershipPage.css — Styling for Wakanit Leadership Portal
+   Follows LYCORIS Design System: Noir Midnight + Frosted Glass
+   ============================================================ */
+
+.leadership-page {
+  position: relative;
+  min-height: 100vh;
+  padding: 4rem 1.5rem 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #f2f2f2;
+}
+
+.leadership-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.45;
+  z-index: -1;
+  pointer-events: none;
+  filter: brightness(0.5) contrast(1.1);
+}
+
+.leadership-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 20%, rgba(164, 125, 171, 0.12) 0%, rgba(3, 8, 17, 0.95) 80%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.leadership-header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 3rem;
+}
+
+.leadership-badge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.35rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: var(--theme-accent-subtle);
+  border: 1px solid var(--theme-accent-border);
+  color: var(--theme-accent);
+  margin-bottom: 1.25rem;
+}
+
+.leadership-title {
+  font-size: 2.75rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: 1rem;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+  background: linear-gradient(135deg, #ffffff 30%, #EDB4C7 80%, var(--theme-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.leadership-subtitle {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #E2E8F0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+  margin: 0 auto;
+}
+
+/* Section Card Wrappers */
+.leadership-section {
+  width: 100%;
+  max-width: 980px;
+  margin-bottom: 3.5rem;
+}
+
+.section-headline {
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+
+.section-eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #EDB4C7;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.section-main-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #f2f2f2;
+}
+
+/* 3 Divisions Bento Grid */
+.divisions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 1.5rem;
+}
+
+.division-card {
+  background: rgba(25, 27, 51, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 1.75rem;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.division-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--theme-accent-border);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.division-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.division-icon-badge {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.division-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0;
+  color: #f2f2f2;
+}
+
+.division-tagline {
+  font-size: 0.8rem;
+  color: #94A3B8;
+  margin: 0.2rem 0 0;
+}
+
+.division-desc {
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: #CBD5E1;
+  margin-bottom: 1.25rem;
+}
+
+.division-list-title {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--theme-accent);
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.division-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.25rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.division-checklist li {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: #94A3B8;
+  position: relative;
+  padding-left: 1.2rem;
+}
+
+.division-checklist li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--theme-accent);
+  font-weight: bold;
+}
+
+.division-bottleneck {
+  margin-top: auto;
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.25);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: #FCA5A5;
+}
+
+/* Workflow Estafet Pipeline */
+.workflow-pipeline-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1rem;
+  position: relative;
+}
+
+.workflow-card {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.workflow-step-num {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #EDB4C7;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.workflow-owner {
+  display: inline-block;
+  background: var(--theme-accent-subtle);
+  border: 1px solid var(--theme-accent-border);
+  color: var(--theme-accent);
+  border-radius: 6px;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  width: max-content;
+}
+
+.workflow-desc {
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: #94A3B8;
+  margin: 0;
+}
+
+/* 5 Pillars Bento */
+.pillars-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.pillar-box {
+  background: rgba(25, 27, 51, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 2rem;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.pillar-box:hover {
+  border-color: var(--theme-accent-border);
+  transform: translateY(-2px);
+}
+
+.pillar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.pillar-number {
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.15);
+  font-family: 'Inter', sans-serif;
+}
+
+.pillar-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+  background: var(--theme-accent-subtle);
+  color: var(--theme-accent);
+  border: 1px solid var(--theme-accent-border);
+}
+
+.pillar-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f2f2f2;
+  margin: 0 0 0.25rem;
+}
+
+.pillar-subtitle {
+  font-size: 0.8rem;
+  color: #EDB4C7;
+  margin: 0 0 1rem;
+  font-weight: 600;
+}
+
+.pillar-desc {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: #CBD5E1;
+  margin-bottom: 1rem;
+}
+
+.pillar-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.pillar-bullets li {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: #94A3B8;
+  position: relative;
+  padding-left: 1.4rem;
+}
+
+.pillar-bullets li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--theme-accent);
+  font-weight: bold;
+}
+
+/* Interactive Readiness Dashboard */
+.readiness-dashboard {
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid var(--theme-accent-border);
+  border-radius: 24px;
+  padding: 2.2rem;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45), 0 0 30px var(--theme-accent-subtle);
+  margin-bottom: 2rem;
+}
+
+.dashboard-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.dashboard-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #f2f2f2;
+}
+
+.dashboard-subtitle {
+  font-size: 0.85rem;
+  color: #EDB4C7;
+  margin-top: 0.3rem;
+  font-weight: 600;
+}
+
+.dashboard-stats {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.dashboard-score {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--theme-accent);
+  line-height: 1;
+}
+
+.dashboard-total {
+  font-size: 0.9rem;
+  color: #94A3B8;
+}
+
+.readiness-progress-track {
+  width: 100%;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.readiness-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #EDB4C7 0%, var(--theme-accent) 100%);
+  border-radius: 9999px;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 12px var(--theme-accent-glow);
+}
+
+/* Phase Checklist Grid */
+.checklist-phases-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 1.5rem;
+}
+
+.phase-card {
+  background: rgba(25, 27, 51, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.phase-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f2f2f2;
+  margin: 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.phase-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.checklist-item-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+
+.checklist-item-row:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.checklist-item-row.is-done {
+  background: var(--theme-accent-subtle);
+  border-color: var(--theme-accent-border);
+}
+
+.custom-checkbox {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: #ffffff;
+  flex-shrink: 0;
+  margin-top: 1px;
+  transition: all 0.2s ease;
+}
+
+.checklist-item-row.is-done .custom-checkbox {
+  background: var(--theme-accent);
+  border-color: var(--theme-accent);
+  box-shadow: 0 0 8px var(--theme-accent-glow);
+}
+
+.checklist-text {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: #CBD5E1;
+  transition: color 0.2s ease;
+}
+
+.checklist-item-row.is-done .checklist-text {
+  color: #f2f2f2;
+}
+
+/* Reset Button */
+.btn-reset-leader {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #94A3B8;
+  font-size: 0.75rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-reset-leader:hover {
+  color: #EF4444;
+  border-color: #EF4444;
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* Mobile Media Queries */
+@media (max-width: 768px) {
+  .leadership-page {
+    padding: 3rem 1rem 7rem;
+  }
+
+  .leadership-title {
+    font-size: 2rem;
+  }
+
+  .checklist-phases-container {
+    grid-template-columns: 1fr;
+  }
+
+  .divisions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pillar-header {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .dashboard-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

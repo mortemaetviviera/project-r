@@ -32,3 +32,13 @@ dist-ssr
 
 # Testing
 coverage/
+
+# Reference documents (local reference only — do not track)
+PRD.md
+IMPLEMENTATION_PLAN.md
+AUDIT.md
+BUGS_TESTING.md
+RULES.md
+DESIGN_SYSTEM.md
+reference-docs/
+

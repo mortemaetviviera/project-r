@@ -2,6 +2,7 @@ import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import LogoIcon from '../components/LogoIcon';
 import { triggerHaptic } from '../utils/haptics';
+import { playTick, playSuccessPop } from '../utils/audio';
 import { semestersData, categoryTabs } from '../data/masteranData';
 import '../styles/MasteranPage.css';
 
@@ -35,6 +36,7 @@ const MasteranPage = () => {
         document.execCommand('copy');
         document.body.removeChild(textArea);
       }
+      playSuccessPop();
       triggerHaptic(15); // light confirmation on copy
       setCopiedId(id);
       if (copyTimeoutRef.current) clearTimeout(copyTimeoutRef.current);
@@ -42,6 +44,12 @@ const MasteranPage = () => {
     } catch (err) {
       console.warn('Failed to copy link:', err);
     }
+  };
+
+  const handlePointerMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    e.currentTarget.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
   };
 
   const filteredSemesters = useMemo(() => {
@@ -72,10 +80,11 @@ const MasteranPage = () => {
       <div
         style={{
           position: 'fixed',
+          inset: 0,
           top: 0,
           left: 0,
-          width: '100%',
-          height: '100%',
+          width: '100vw',
+          height: '100dvh',
           background: 'linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(4,11,22,0.9) 100%)',
           boxShadow: 'inset 0 0 100px rgba(0,0,0,0.8)',
           zIndex: -1,
@@ -129,7 +138,11 @@ const MasteranPage = () => {
               key={tab.id}
               type="button"
               className={`category-tab-btn ${activeCategory === tab.id ? 'active' : ''}`}
-              onClick={() => setActiveCategory(tab.id)}
+              onClick={() => {
+                playTick();
+                triggerHaptic(12);
+                setActiveCategory(tab.id);
+              }}
             >
               {tab.label}
             </button>
@@ -162,11 +175,15 @@ const MasteranPage = () => {
       ) : (
         <div className="masteran-bento">
           {filteredSemesters.map((semester) => (
-            <div className="bento-box" key={semester.id}>
+            <div
+              className="bento-box bento-specular"
+              key={semester.id}
+              onPointerMove={handlePointerMove}
+            >
               <div className="bento-header">
                 <div className="bento-title-area">
                   <div className="group-icon" style={{ backgroundColor: 'var(--theme-accent, #A47DAB)', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '56px', height: '56px', borderRadius: '16px', transition: 'background-color 0.3s ease' }}>
-                    <span style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#f2f2f2' }}>{semester.id}</span>
+                    <span style={{ fontSize: '1.25rem', fontWeight: 'bold', color: 'var(--theme-accent-text, #f2f2f2)', transition: 'color 0.3s ease' }}>{semester.id}</span>
                   </div>
                   <div style={{ textAlign: 'left' }}>
                     <h3 style={{ margin: 0, fontSize: '1.25rem', color: '#f2f2f2' }}>{semester.title}</h3>

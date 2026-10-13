@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useCallback, useEffect, useRef } from 'react';
 import { triggerHaptic } from '../utils/haptics';
+import { playTick } from '../utils/audio';
 
 const COLOR_SEQUENCE = ['white', 'red', 'purple'];
 
@@ -37,6 +38,7 @@ export const LogoColorProvider = ({ children }) => {
 
   const cycleColor = useCallback(() => {
     if (isAnimating) return;
+    playTick();
     triggerHaptic(18); // subtle pulse on logo color change
     setIsAnimating(true);
     if (timeoutRef.current) clearTimeout(timeoutRef.current);

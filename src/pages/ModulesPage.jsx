@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import ModuleCard from '../components/ModuleCard';
 import LogoIcon from '../components/LogoIcon';
 import { triggerHaptic } from '../utils/haptics';
+import { playTick, playSuccessPop } from '../utils/audio';
 import { linksData, STORAGE_KEY, figmaModules, psModules } from '../data/modulesData';
 import '../styles/ModulesPage.css';
 
@@ -19,16 +20,24 @@ const ModulesPage = () => {
   useEffect(() => {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+      window.dispatchEvent(new CustomEvent('lycoris:progress', { detail: progress }));
     } catch (e) {
       console.error('Failed to save progress to localStorage', e);
     }
   }, [progress]);
 
   const toggleComplete = (num) => {
-    triggerHaptic(25); // satisfying pulse when marking a module
+    const isNowDone = !progress[num];
+    if (isNowDone) {
+      playSuccessPop();
+      triggerHaptic(25);
+    } else {
+      playTick();
+      triggerHaptic(15);
+    }
     setProgress(prev => ({
       ...prev,
-      [num]: !prev[num]
+      [num]: isNowDone
     }));
   };
 
@@ -36,6 +45,12 @@ const ModulesPage = () => {
     if (window.confirm('Yakin mau reset semua progres belajar luv?')) {
       setProgress({});
     }
+  };
+
+  const handlePointerMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    e.currentTarget.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
   };
 
   // Figma calculations
@@ -94,7 +109,10 @@ const ModulesPage = () => {
 
         <div className="dual-progress-grid">
           {/* Figma Track Progress */}
-          <div className="track-progress-card figma-track">
+          <div
+            className="track-progress-card figma-track bento-specular"
+            onPointerMove={handlePointerMove}
+          >
             <div className="track-header">
               <div className="track-icon-title">
                 <img src="/figma.png" alt="Figma logo" width="22" height="22" />
@@ -117,7 +135,10 @@ const ModulesPage = () => {
           </div>
 
           {/* Adobe Photoshop Track Progress */}
-          <div className="track-progress-card photoshop-track">
+          <div
+            className="track-progress-card photoshop-track bento-specular"
+            onPointerMove={handlePointerMove}
+          >
             <div className="track-header">
               <div className="track-icon-title">
                 <img src="/adobe.png" alt="Adobe logo" width="22" height="22" />

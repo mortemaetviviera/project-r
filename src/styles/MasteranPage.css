@@ -9,6 +9,7 @@
   gap: 2rem;
   padding: 2rem 0;
   width: 100%;
+  min-height: 50vh;
 }
 
 .bento-box {
@@ -226,6 +227,11 @@
   color: var(--color-text-muted);
   max-width: 500px;
   margin: 0 auto;
+  min-height: 45vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .empty-emoji {
