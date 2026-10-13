@@ -11,6 +11,8 @@ import FloatingNav from './components/FloatingNav'
 import BackToTop from './components/BackToTop'
 import { LogoColorProvider } from './context/LogoColorContext'
 import { applyTimeLighting } from './utils/timeLighting'
+import { playBloomChime } from './utils/audio'
+import { triggerHaptic } from './utils/haptics'
 import './styles/App.css'
 
 // Inner component so useLocation can access the BrowserRouter context from main.jsx
@@ -20,6 +22,35 @@ function AppInner() {
     applyTimeLighting();
     const timer = setInterval(applyTimeLighting, 10 * 60 * 1000);
     return () => clearInterval(timer);
+  }, []);
+
+  // Concept 6: The Lycoris Bloom Engine & Kinetic Resonance
+  useEffect(() => {
+    const handleBloom = (e) => {
+      const x = e.detail?.x ?? (window.innerWidth / 2);
+      const y = e.detail?.y ?? (window.innerHeight / 2);
+
+      playBloomChime();
+      triggerHaptic([20, 50, 20]);
+
+      // Spawn native DOM shockwave ring (zero React state remount overhead)
+      const ring = document.createElement('div');
+      ring.className = 'bloom-shockwave-ring';
+      ring.style.left = `${x}px`;
+      ring.style.top = `${y}px`;
+      document.body.appendChild(ring);
+      setTimeout(() => ring.remove(), 900);
+
+      // Kinetic Typography Resonance Flare
+      const targets = document.querySelectorAll('.text-aurora-kinetic');
+      targets.forEach((el) => el.classList.add('aurora-flare'));
+      setTimeout(() => {
+        targets.forEach((el) => el.classList.remove('aurora-flare'));
+      }, 850);
+    };
+
+    window.addEventListener('lycoris:bloom', handleBloom);
+    return () => window.removeEventListener('lycoris:bloom', handleBloom);
   }, []);
 
   return (

@@ -104,3 +104,39 @@ export const playSuccessPop = () => {
     osc2.stop(ctx.currentTime + 0.09);
   } catch {}
 };
+
+/**
+ * Play a crystalline bloom harmonic chime on flower touch / milestone
+ * Uses 3 soft ascending sinusoidal bell tones (D5, A5, D6)
+ */
+export const playBloomChime = () => {
+  if (!isSoundEnabled()) return;
+  try {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+
+    // Harmonic bell sequence: 3 delicate tones [587Hz (D5), 880Hz (A5), 1174Hz (D6)]
+    const freqs = [587.33, 880, 1174.66];
+    freqs.forEach((f, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      const start = ctx.currentTime + i * 0.055;
+      const dur = 0.28;
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(f, start);
+      osc.frequency.exponentialRampToValueAtTime(f * 1.04, start + dur);
+
+      gain.gain.setValueAtTime(0.001, start);
+      gain.gain.linearRampToValueAtTime(0.065 / (i + 1), start + 0.025);
+      gain.gain.exponentialRampToValueAtTime(0.0001, start + dur);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start(start);
+      osc.stop(start + dur);
+    });
+  } catch {}
+};
+

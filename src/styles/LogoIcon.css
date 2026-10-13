@@ -47,3 +47,20 @@
   filter: blur(1px);
   pointer-events: none;
 }
+
+/* Ambient breathing state on idle */
+@keyframes logoBreathe {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 4px var(--theme-accent-subtle, rgba(164, 125, 171, 0.25)));
+  }
+  50% {
+    transform: scale(1.06);
+    filter: drop-shadow(0 0 14px var(--theme-accent-glow, rgba(164, 125, 171, 0.65)));
+  }
+}
+
+.lycoris-logo-icon--clickable:not(:hover):not(.lycoris-logo-icon--flash) {
+  animation: logoBreathe 4.5s ease-in-out infinite;
+}
+

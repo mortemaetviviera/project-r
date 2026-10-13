@@ -20,7 +20,7 @@ const RulesPage = () => {
         <div className="hero-overlay"></div>
         <div className="hero-content hero-content-right">
           <p className="hero-subtitle">belajar design nih yee</p>
-          <h1 style={{ color: '#f2f2f2', fontSize: '4rem' }}>Hi Luvvv</h1>
+          <h1 className="text-aurora-kinetic" style={{ fontSize: '4rem' }}>Hi Luvvv</h1>
         </div>
       </section>
 

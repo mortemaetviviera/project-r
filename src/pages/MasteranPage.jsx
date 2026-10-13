@@ -100,7 +100,7 @@ const MasteranPage = () => {
       </div>
 
       <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-        <h1 className="modules-title" style={{ marginBottom: '1rem', textShadow: '0 8px 20px rgba(0, 0, 0, 0.8), 0 0 30px var(--theme-accent-strong, rgba(164, 125, 171, 0.6))' }}>
+        <h1 className="modules-title text-aurora-kinetic" style={{ marginBottom: '1rem' }}>
           MASTERAN PUNYA KU NIEH
         </h1>
         <p style={{ color: '#f2f2f2', maxWidth: '650px', margin: '0 auto', fontSize: '1.05rem', lineHeight: '1.6', textShadow: '0 2px 5px rgba(0, 0, 0, 0.8)' }}>

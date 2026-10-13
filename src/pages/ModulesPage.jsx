@@ -31,6 +31,22 @@ const ModulesPage = () => {
     if (isNowDone) {
       playSuccessPop();
       triggerHaptic(25);
+
+      // Milestone check: trigger Super Bloom when track or course completes
+      const nextProgress = { ...progress, [num]: true };
+      const fDone = figmaModules.filter(n => nextProgress[n]).length;
+      const pDone = psModules.filter(n => nextProgress[n]).length;
+      const tDone = fDone + pDone;
+      const justCompletedFigma = fDone === 5 && figmaModules.includes(num);
+      const justCompletedPs = pDone === 5 && psModules.includes(num);
+
+      if (tDone === 10 || justCompletedFigma || justCompletedPs) {
+        setTimeout(() => {
+          window.dispatchEvent(new CustomEvent('lycoris:bloom', {
+            detail: { milestone: true, total: tDone }
+          }));
+        }, 120);
+      }
     } else {
       playTick();
       triggerHaptic(15);
@@ -87,7 +103,7 @@ const ModulesPage = () => {
         <LogoIcon size={36} staticColor={false} />
       </div>
 
-      <h1 className="modules-title">MANGAD BELAJARNYA LUV</h1>
+      <h1 className="modules-title text-aurora-kinetic">MANGAD BELAJARNYA LUV</h1>
 
       {/* Separated Dual Progress Dashboard */}
       <div className="progress-dashboard">

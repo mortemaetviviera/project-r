@@ -52,7 +52,7 @@ const HomePage = () => {
         <div className="mntn-hero-overlay"></div>
         <div className="mntn-hero-content">
           <div className="mntn-hero-subtitle">COMPILATION OF SOMETHING I CANT NAME IT HERE</div>
-          <h1 className="mntn-hero-title">BONJOUR MON AMOUR</h1>
+          <h1 className="mntn-hero-title text-aurora-kinetic">BONJOUR MON AMOUR</h1>
           <p style={{ letterSpacing: '1px', fontSize: '14px', fontWeight: '500', color: '#f2f2f2' }}>Ini Apa?? Scroll Ajah Dulu</p>
           <div style={{ marginTop: '2.5rem' }}>
             <LogoIcon size={120} staticColor={false} />
@@ -60,71 +60,88 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="mntn-section mntn-section-01" id="about">
-        <div className="mntn-section-content">
-          <div className="mntn-section-text">
-            <div className="mntn-section-number">01</div>
-            <div className="mntn-section-subtitle">APA HAYO LUV</div>
-            <h2 className="mntn-section-title">WEB APALAGI???</h2>
-            <p className="mntn-section-description">
-              gampangnya kalo kamu nyari sesuatu tinggal buka web ini ajah. tinggal simpen linknya, bookmark atau yaa leave it opened on ur chrome (kalo berani mwehehehe)
-            </p>
-          </div>
-          <div className="mntn-section-image-wrapper">
-            <img
-              src="/gambar-4.jpeg"
-              alt="Beach"
-              className="mntn-section-image"
-            />
-          </div>
+      {/* Idea 2: Ambient Infinite Marquee Ribbon */}
+      <div className="ambient-marquee-ribbon" aria-hidden="true">
+        <div className="marquee-track">
+          <span>✦ FIGMA UI/UX &bull; ADOBE PHOTOSHOP &bull; MASTERAN ARCHIVE &bull; SEMESTER 1—8 &bull; FOR U LUV</span>
+          <span>✦ FIGMA UI/UX &bull; ADOBE PHOTOSHOP &bull; MASTERAN ARCHIVE &bull; SEMESTER 1—8 &bull; FOR U LUV</span>
+          <span>✦ FIGMA UI/UX &bull; ADOBE PHOTOSHOP &bull; MASTERAN ARCHIVE &bull; SEMESTER 1—8 &bull; FOR U LUV</span>
         </div>
-      </section>
+      </div>
 
-      <section className="mntn-section mntn-section-02" id="design">
-        <div className="mntn-section-content">
-          <div className="mntn-section-text">
-            <div className="mntn-section-number">02</div>
-            <div className="mntn-section-subtitle">DESIGN</div>
-            <h2 className="mntn-section-title">Design nieh...</h2>
-            <p className="mntn-section-description">
-              kalo ke page design yang kemaren ntu tinggal klik dibawah ajah luv.
-            </p>
-            <Link to="/rules" className="mntn-btn-primary" style={{ display: 'inline-block', textAlign: 'center' }}>
-              Click Sini Design Yee
-            </Link>
-          </div>
-          <div className="mntn-section-image-wrapper">
-            <img
-              src="/gambar-5.jpeg"
-              alt="Drawing"
-              className="mntn-section-image"
-            />
-          </div>
-        </div>
-      </section>
+      <div className="storyline-rail-container">
+        {/* Idea 5: Numbered Section Storyline Rail */}
+        <div className="storyline-track-line" aria-hidden="true" />
 
-      <section className="mntn-section mntn-section-03" id="master">
-        <div className="mntn-section-content">
-          <div className="mntn-section-text">
-            <div className="mntn-section-number">03</div>
-            <div className="mntn-section-subtitle">MASTERAN</div>
-            <h2 className="mntn-section-title">Inih Masteran</h2>
-            <p className="mntn-section-description">
-              Gampangnya semua yang ku punya dari semester dulu (iyee TUA) ada disini, mostly mix sieh dan random. jadi gaa semua yang ku kerjain ada disini semua.
-            </p>
-            <Link to="/masteran" className="mntn-btn-primary" style={{ display: 'inline-block', textAlign: 'center', textDecoration: 'none' }}>
-              Masteran Click sini yaa
-            </Link>
+        <section className="mntn-section mntn-section-01" id="about">
+          <div className="mntn-section-content">
+            <div className="mntn-section-text">
+              <div className="storyline-node-dot">01</div>
+              <div className="mntn-section-number">01</div>
+              <div className="mntn-section-subtitle">APA HAYO LUV</div>
+              <h2 className="mntn-section-title">WEB APALAGI???</h2>
+              <p className="mntn-section-description">
+                gampangnya kalo kamu nyari sesuatu tinggal buka web ini ajah. tinggal simpen linknya, bookmark atau yaa leave it opened on ur chrome (kalo berani mwehehehe)
+              </p>
+            </div>
+            <div className="mntn-section-image-wrapper">
+              <img
+                src="/gambar-4.jpeg"
+                alt="Beach"
+                className="mntn-section-image"
+              />
+            </div>
           </div>
-          <div className="mntn-section-image-wrapper">
-            <img
-              src="/gambar-6.jpeg"
-              alt="Store"
-              className="mntn-section-image"
-            />
+        </section>
+
+        <section className="mntn-section mntn-section-02" id="design">
+          <div className="mntn-section-content">
+            <div className="mntn-section-text">
+              <div className="storyline-node-dot">02</div>
+              <div className="mntn-section-number">02</div>
+              <div className="mntn-section-subtitle">DESIGN</div>
+              <h2 className="mntn-section-title">Design nieh...</h2>
+              <p className="mntn-section-description">
+                kalo ke page design yang kemaren ntu tinggal klik dibawah ajah luv.
+              </p>
+              <Link to="/rules" className="mntn-btn-primary" style={{ display: 'inline-block', textAlign: 'center' }}>
+                Click Sini Design Yee
+              </Link>
+            </div>
+            <div className="mntn-section-image-wrapper">
+              <img
+                src="/gambar-5.jpeg"
+                alt="Drawing"
+                className="mntn-section-image"
+              />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        <section className="mntn-section mntn-section-03" id="master">
+          <div className="mntn-section-content">
+            <div className="mntn-section-text">
+              <div className="storyline-node-dot">03</div>
+              <div className="mntn-section-number">03</div>
+              <div className="mntn-section-subtitle">MASTERAN</div>
+              <h2 className="mntn-section-title">Inih Masteran</h2>
+              <p className="mntn-section-description">
+                Gampangnya semua yang ku punya dari semester dulu (iyee TUA) ada disini, mostly mix sieh dan random. jadi gaa semua yang ku kerjain ada disini semua.
+              </p>
+              <Link to="/masteran" className="mntn-btn-primary" style={{ display: 'inline-block', textAlign: 'center', textDecoration: 'none' }}>
+                Masteran Click sini yaa
+              </Link>
+            </div>
+            <div className="mntn-section-image-wrapper">
+              <img
+                src="/gambar-6.jpeg"
+                alt="Store"
+                className="mntn-section-image"
+              />
+            </div>
+          </div>
+        </section>
+      </div>
 
       <footer className="mntn-footer">
         <div className="mntn-footer-logo-group">

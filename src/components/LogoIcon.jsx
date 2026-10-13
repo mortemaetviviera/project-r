@@ -24,8 +24,18 @@ const LogoIcon = ({ staticColor = false, size = 28, className = '' }) => {
 
   const src = LOGO_SRC[staticColor ? 'white' : currentColor];
 
-  const handleClick = () => {
+  const triggerBloom = (el) => {
+    try {
+      const rect = el?.getBoundingClientRect();
+      const x = rect ? rect.left + rect.width / 2 : window.innerWidth / 2;
+      const y = rect ? rect.top + rect.height / 2 : window.innerHeight / 2;
+      window.dispatchEvent(new CustomEvent('lycoris:bloom', { detail: { x, y } }));
+    } catch {}
+  };
+
+  const handleClick = (e) => {
     if (staticColor) return;
+    triggerBloom(e.currentTarget);
     cycleColor();
   };
 
@@ -33,6 +43,7 @@ const LogoIcon = ({ staticColor = false, size = 28, className = '' }) => {
     if (staticColor) return;
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
+      triggerBloom(e.currentTarget);
       cycleColor();
     }
   };
