@@ -1,16 +1,9 @@
 import React from 'react';
 
 const ModuleCard = ({ number, moduleLink, submissionLink, isCompleted, onToggleComplete }) => {
-  const handlePointerMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    e.currentTarget.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-    e.currentTarget.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
-  };
-
   return (
     <div
-      className={`module-card bento-specular ${isCompleted ? 'is-completed' : ''}`}
-      onPointerMove={handlePointerMove}
+      className={`module-card ${isCompleted ? 'is-completed' : ''}`}
     >
       <div className="module-card-header">
         <h4>Modul {number}</h4>

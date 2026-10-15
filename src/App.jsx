@@ -4,7 +4,6 @@ import HomePage from './pages/HomePage'
 import RulesPage from './pages/RulesPage'
 import ModulesPage from './pages/ModulesPage'
 import MasteranPage from './pages/MasteranPage'
-// import LeadershipPage from './pages/LeadershipPage' // Ditangguhkan sementara
 import NotFoundPage from './pages/NotFoundPage'
 import ScrollToTop from './components/ScrollToTop'
 import FloatingNav from './components/FloatingNav'
@@ -41,11 +40,10 @@ function AppInner() {
       document.body.appendChild(ring);
       setTimeout(() => ring.remove(), 900);
 
-      // Kinetic Typography Resonance Flare
-      const targets = document.querySelectorAll('.text-aurora-kinetic');
-      targets.forEach((el) => el.classList.add('aurora-flare'));
+      // Kinetic Typography Resonance Flare - using body class
+      document.body.classList.add('bloom-active');
       setTimeout(() => {
-        targets.forEach((el) => el.classList.remove('aurora-flare'));
+        document.body.classList.remove('bloom-active');
       }, 850);
     };
 
@@ -70,7 +68,6 @@ function AppInner() {
           <Route path="/rules" element={<RulesPage />} />
           <Route path="/modules" element={<ModulesPage />} />
           <Route path="/masteran" element={<MasteranPage />} />
-          {/* <Route path="/leader" element={<LeadershipPage />} /> */}
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>

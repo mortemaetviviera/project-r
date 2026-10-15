@@ -183,4 +183,19 @@ h3 { font-size: 1.5rem; }
   transform: scale(1.025);
 }
 
+/* Bloom active class applied to <body> for zero-DOM-query animation */
+.bloom-active .text-aurora-kinetic {
+  filter: drop-shadow(0 0 24px var(--theme-accent-glow, rgba(164, 125, 171, 0.9))) brightness(1.45) !important;
+  transform: scale(1.025);
+}
+
+/* Fallback for browsers lacking background-clip: text support */
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+  .text-aurora-kinetic {
+    color: var(--color-text-light, #ffffff) !important;
+    -webkit-text-fill-color: initial !important;
+    background: none !important;
+  }
+}
+
 

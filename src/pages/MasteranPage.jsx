@@ -42,14 +42,8 @@ const MasteranPage = () => {
       if (copyTimeoutRef.current) clearTimeout(copyTimeoutRef.current);
       copyTimeoutRef.current = setTimeout(() => setCopiedId(null), 2000);
     } catch (err) {
-      console.warn('Failed to copy link:', err);
+      console.warn(`[Lycoris Masteran] Failed to copy link for "${id}" to clipboard:`, err);
     }
-  };
-
-  const handlePointerMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    e.currentTarget.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-    e.currentTarget.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
   };
 
   const filteredSemesters = useMemo(() => {
@@ -176,9 +170,8 @@ const MasteranPage = () => {
         <div className="masteran-bento">
           {filteredSemesters.map((semester) => (
             <div
-              className="bento-box bento-specular"
+              className="bento-box"
               key={semester.id}
-              onPointerMove={handlePointerMove}
             >
               <div className="bento-header">
                 <div className="bento-title-area">

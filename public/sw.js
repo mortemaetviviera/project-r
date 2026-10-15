@@ -1,20 +1,35 @@
-const CACHE_NAME = 'lycoris-cache-v1';
+const CACHE_NAME = 'lycoris-cache-v2';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
   '/manifest.json',
+  '/favicon.svg',
+  '/pwa-icon.svg',
   '/logo/logo-purple.svg',
   '/logo/logo-white.svg',
   '/logo/logo-red.svg',
-  '/mntn-hero.png'
+  '/mntn-hero.png',
+  '/adobe.png',
+  '/figma.png'
 ];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(STATIC_ASSETS).catch((err) => {
-        console.warn('Some static assets failed to precache:', err);
-      });
+    caches.open(CACHE_NAME).then(async (cache) => {
+      await Promise.allSettled(
+        STATIC_ASSETS.map(async (asset) => {
+          try {
+            const response = await fetch(asset);
+            if (response.ok) {
+              await cache.put(asset, response);
+            } else {
+              console.warn(`[Lycoris SW] Precache returned status ${response.status} for: ${asset}`);
+            }
+          } catch (err) {
+            console.warn(`[Lycoris SW] Failed to precache asset ${asset}:`, err);
+          }
+        })
+      );
     })
   );
   self.skipWaiting();

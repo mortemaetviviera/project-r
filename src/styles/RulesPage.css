@@ -33,7 +33,7 @@
   content: '';
   position: absolute;
   top: -2px; left: -2px; right: -2px; bottom: -2px;
-  background: linear-gradient(45deg, var(--color-primary-purple), #E5B5C8, #C084FC, var(--color-primary-purple));
+  background: var(--theme-border-gradient, linear-gradient(45deg, var(--color-primary-purple), #E5B5C8, #C084FC, var(--color-primary-purple)));
   background-size: 300%;
   z-index: -1;
   filter: blur(8px);

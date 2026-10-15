@@ -187,3 +187,227 @@ export const checklistPhases = [
     ]
   }
 ];
+
+
+export const GDU_DRIVE_URL = 'https://drive.google.com/drive/folders/1aiVZX6op2cnAHl8Mh9FU7tpgOqGy8s1G?usp=sharing';
+
+export const gduArchiveFiles = [
+  {
+    year: '2026',
+    title: 'GDU INFOKOM 2026',
+    kabinet: 'Kabinet Eskalasi Karya',
+    leaders: 'Jesse Timothy H. D. (Ketua) & Amirah Rahmah W. (Wakanit)',
+    focus: 'Ekspansi TikTok/Reels, SOP Konten CEDC, Kemitraan Eksternal & Studi Banding.',
+    badge: 'Aktif / Berjalan'
+  },
+  {
+    year: '2025',
+    title: 'GDU INFOKOM 2025',
+    kabinet: 'Sinergi Pradipa',
+    leaders: 'Muhammad Baihaqi (Ketua) & Muhammad Hafiizh P. (Wakanit)',
+    focus: 'Peletakan pondasi struktur komunikasi, Podcast 5 episode, Roadshow ormawa, Company Profile.',
+    badge: 'Arsip Referensi'
+  }
+];
+
+export const cabinetComparison = [
+  {
+    role: 'Ketua Unit',
+    y2025: 'Muhammad Baihaqi',
+    y2026: 'Jesse Timothy H. D.'
+  },
+  {
+    role: 'Wakil Ketua Unit (Wakanit)',
+    y2025: 'Muhammad Hafiizh P.',
+    y2026: 'Amirah Rahmah W.'
+  },
+  {
+    role: 'Sekretaris',
+    y2025: 'Aisyah Aulia A. P.',
+    y2026: 'Oktavia Damayanti'
+  }
+];
+
+export const valuesCulture2026 = [
+  {
+    title: 'PROAKTIF',
+    desc: 'Inisiatif mencari solusi sebelum diminta dan jemput bola kebutuhan publikasi.'
+  },
+  {
+    title: 'KOLABORATIF',
+    desc: 'Sinergi erat lintas Divisi Informasi, Media, dan Humas tanpa sekat silo.'
+  },
+  {
+    title: 'PRESISI',
+    desc: 'Kualitas visual, ketepatan redaksi, dan disiplin timeline publikasi teruji.'
+  },
+  {
+    title: 'BERKELANJUTAN',
+    desc: 'Dokumentasi rapi, standarisasi aset cloud, dan transfer pengetahuan antar staf.'
+  }
+];
+export const workPrograms2025 = [
+  {
+    name: 'MEDITEKKOM',
+    scale: 'KECIL',
+    pj: 'Farhan Fahrezi',
+    budget: 'Rp 0',
+    target: 'Publik'
+  },
+  {
+    name: 'TELNET',
+    scale: 'KECIL',
+    pj: 'informasi (1)',
+    budget: 'Rp 0',
+    target: 'Publik dan civitas Teknik'
+  },
+  {
+    name: 'INFOGRAFIS',
+    scale: 'KECIL',
+    pj: 'Amanda Lalita Tri Gunawan',
+    budget: 'Rp 0',
+    target: 'Publik'
+  },
+  {
+    name: 'CEDC',
+    scale: 'SEDANG',
+    pj: 'Haidar Rafi Apta Priatama',
+    budget: 'Rp 0',
+    target: 'Publik'
+  },
+  {
+    name: 'DIGITAL & COMPANY PROFILE',
+    scale: 'SEDANG',
+    pj: 'Jesse Timothy Halomoan Damanik',
+    budget: 'Rp 0',
+    target: 'Publik'
+  },
+  {
+    name: 'DATABASE MEDIA',
+    scale: 'SEDANG',
+    pj: 'Muhammad Daffa Ryan Fausta',
+    budget: 'Rp 300.000',
+    target: 'Acara yang diselenggarakan'
+  },
+  {
+    name: 'TIKTOK',
+    scale: 'SEDANG',
+    pj: 'Trinity Octavio Channa Pakpahan (Media) yunita informasi (1)',
+    budget: 'Rp 0',
+    target: 'Publik dan civitas Teknik'
+  },
+  {
+    name: 'PODCAST',
+    scale: 'SEDANG',
+    pj: 'Muhammad Afiffatin Hariz Isya (informasi) (1)',
+    budget: 'Rp 300.000',
+    target: 'Publik dan civitas Teknik'
+  },
+  {
+    name: 'PARTNERSHIP',
+    scale: 'SEDANG',
+    pj: 'Hening Wijaya Imanda',
+    budget: 'Rp 0',
+    target: 'Setiap anggota HIMASKOM dan tempat-tempat usaha.'
+  },
+  {
+    name: 'ROADSHOW',
+    scale: 'BESAR',
+    pj: 'reda',
+    budget: 'Rp 2.000.000',
+    target: 'HIMASKOM dan satu organisasi lain'
+  },
+  {
+    name: 'UCAPAN ULTAH',
+    scale: 'SEDANG',
+    pj: 'akt 23',
+    budget: 'Rp 0',
+    target: 'Seluruh anggota HIMASKOM aktif.'
+  },
+  {
+    name: 'IDCT',
+    scale: 'SEDANG',
+    pj: 'akt 23',
+    budget: 'Rp 0',
+    target: 'Staff Muda INFOKOM'
+  }
+];
+export const workPrograms2026 = [
+  {
+    name: 'INFOGRAFIS',
+    scale: 'KECIL',
+    pj: 'AMANDA LALITA TRI G.',
+    budget: 'Rp 0',
+    target: 'Publik'
+  },
+  {
+    name: 'MEDITEKKOM',
+    scale: 'KECIL',
+    pj: 'HAIDAR RAFI',
+    budget: 'Rp 0',
+    target: 'Publik dan civitas Teknik Komputer'
+  },
+  {
+    name: 'TELNET',
+    scale: 'KECIL',
+    pj: 'RAFI BYZAN, YUNITA DWI ARDILASARI',
+    budget: 'Rp 0',
+    target: 'Publik dan civitas Teknik Komputer'
+  },
+  {
+    name: 'CEDC',
+    scale: 'KECIL',
+    pj: 'HAIDAR RAFI, INFORMASI',
+    budget: 'Rp 0',
+    target: 'Publik'
+  },
+  {
+    name: 'DIGITAL & COMPANY PROFILE',
+    scale: 'BESAR',
+    pj: 'AFFIATIN, DAFFA RYAN',
+    budget: 'Rp 0',
+    target: 'Publik mengetahui tentang profil kepengurusan di HIMASKOM.'
+  },
+  {
+    name: 'DATABASE MEDIA',
+    scale: 'SEDANG',
+    pj: 'DAFFA RYAN',
+    budget: 'Rp 300.000',
+    target: 'Media hasil acara dapat disimpan dan tertata baik melalui drive.'
+  },
+  {
+    name: 'TIKTOK',
+    scale: 'KECIL',
+    pj: 'AMANDA, TRINITY, INFORMASI',
+    budget: 'Rp 0',
+    target: 'Publik mendapatkan konten menarik terkait kegiatan-kegiatan yang dilakukan oleh HIMASKOM dan Teknik Komputer melalui aplikasi Tiktok.'
+  },
+  {
+    name: 'PODCAST',
+    scale: 'SEDANG',
+    pj: 'INFORMASI',
+    budget: 'Rp 300.000',
+    target: 'Mendapatkan Target audiens atau pendengar diatas 100 orang.'
+  },
+  {
+    name: 'PARTNERSHIP',
+    scale: 'SEDANG',
+    pj: 'FARHAN FAHREZI',
+    budget: 'Rp 0',
+    target: 'Setiap anggota HIMASKOM dan tempat-tempat usaha.'
+  },
+  {
+    name: 'MEDIA PARTNER',
+    scale: 'SEDANG',
+    pj: 'FARRAS',
+    budget: 'Rp 0',
+    target: 'Setiap anggota HIMASKOM dan tempat-tempat usaha.'
+  },
+  {
+    name: 'STUDI BANDING',
+    scale: 'BESAR',
+    pj: 'MARIO, MIRAH',
+    budget: 'Rp 4.000.000',
+    target: 'HIMASKOM dan organisasi lain'
+  }
+];;

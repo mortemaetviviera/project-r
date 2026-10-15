@@ -12,7 +12,8 @@ const ModulesPage = () => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       return saved ? JSON.parse(saved) : {};
-    } catch {
+    } catch (e) {
+      console.warn(`[Lycoris Modules] Failed to load module progress from localStorage key "${STORAGE_KEY}":`, e);
       return {};
     }
   });
@@ -22,7 +23,7 @@ const ModulesPage = () => {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
       window.dispatchEvent(new CustomEvent('lycoris:progress', { detail: progress }));
     } catch (e) {
-      console.error('Failed to save progress to localStorage', e);
+      console.error(`[Lycoris Modules] Failed to persist module progress to localStorage key "${STORAGE_KEY}":`, e);
     }
   }, [progress]);
 
@@ -61,12 +62,6 @@ const ModulesPage = () => {
     if (window.confirm('Yakin mau reset semua progres belajar luv?')) {
       setProgress({});
     }
-  };
-
-  const handlePointerMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    e.currentTarget.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-    e.currentTarget.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
   };
 
   // Figma calculations
@@ -126,8 +121,7 @@ const ModulesPage = () => {
         <div className="dual-progress-grid">
           {/* Figma Track Progress */}
           <div
-            className="track-progress-card figma-track bento-specular"
-            onPointerMove={handlePointerMove}
+            className="track-progress-card figma-track"
           >
             <div className="track-header">
               <div className="track-icon-title">
@@ -152,8 +146,7 @@ const ModulesPage = () => {
 
           {/* Adobe Photoshop Track Progress */}
           <div
-            className="track-progress-card photoshop-track bento-specular"
-            onPointerMove={handlePointerMove}
+            className="track-progress-card photoshop-track"
           >
             <div className="track-header">
               <div className="track-icon-title">

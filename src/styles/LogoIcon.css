@@ -7,6 +7,7 @@
   flex-shrink: 0;
   object-fit: contain;
   transition: opacity 0.18s ease, transform 0.18s ease, filter 0.18s ease;
+  will-change: transform, opacity;
   user-select: none;
   -webkit-user-drag: none;
 }
@@ -44,23 +45,21 @@
 .lycoris-logo-icon--flash {
   opacity: 0;
   transform: scale(0.82) rotate(-6deg);
-  filter: blur(1px);
   pointer-events: none;
 }
 
-/* Ambient breathing state on idle */
+/* Ambient breathing state on idle (transform only for 60fps GPU smoothness) */
 @keyframes logoBreathe {
   0%, 100% {
     transform: scale(1);
-    filter: drop-shadow(0 0 4px var(--theme-accent-subtle, rgba(164, 125, 171, 0.25)));
   }
   50% {
     transform: scale(1.06);
-    filter: drop-shadow(0 0 14px var(--theme-accent-glow, rgba(164, 125, 171, 0.65)));
   }
 }
 
 .lycoris-logo-icon--clickable:not(:hover):not(.lycoris-logo-icon--flash) {
   animation: logoBreathe 4.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 6px var(--theme-accent-subtle, rgba(164, 125, 171, 0.35)));
 }
 

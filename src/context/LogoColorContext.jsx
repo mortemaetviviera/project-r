@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useCallback, useEffect, useRef } from 'react';
+import React, { createContext, useContext, useState, useCallback, useEffect, useRef, useMemo } from 'react';
 import { triggerHaptic } from '../utils/haptics';
 import { playTick } from '../utils/audio';
 
@@ -22,6 +22,13 @@ const COLOR_TEXT = {
   red:    '#f2f2f2',
   purple: '#f2f2f2',
 };
+
+const COLOR_BORDER_GRADIENTS = {
+  white:  'linear-gradient(45deg, #ffffff, #cbd5e1, #94a3b8, #ffffff)',
+  red:    'linear-gradient(45deg, #dc2626, #fca5a5, #ef4444, #dc2626)',
+  purple: 'linear-gradient(45deg, #A47DAB, #E5B5C8, #C084FC, #A47DAB)',
+};
+
 
 const LogoColorContext = createContext(null);
 
@@ -66,10 +73,16 @@ export const LogoColorProvider = ({ children }) => {
     root.style.setProperty('--theme-accent-border',  `rgba(${currentRgb}, 0.5)`);
     root.style.setProperty('--theme-accent-strong',  `rgba(${currentRgb}, 0.6)`);
     root.style.setProperty('--theme-accent-rgb',     currentRgb);
+    root.style.setProperty('--theme-border-gradient', COLOR_BORDER_GRADIENTS[currentColor]);
   }, [currentColor, currentHex, currentRgb, currentText]);
 
+  const value = useMemo(
+    () => ({ currentColor, currentHex, isAnimating, cycleColor }),
+    [currentColor, currentHex, isAnimating, cycleColor]
+  );
+
   return (
-    <LogoColorContext.Provider value={{ currentColor, currentHex, isAnimating, cycleColor }}>
+    <LogoColorContext.Provider value={value}>
       {children}
     </LogoColorContext.Provider>
   );

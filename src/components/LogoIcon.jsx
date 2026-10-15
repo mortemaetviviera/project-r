@@ -36,7 +36,10 @@ const LogoIcon = ({ staticColor = false, size = 28, className = '' }) => {
   const handleClick = (e) => {
     if (staticColor) return;
     triggerBloom(e.currentTarget);
-    cycleColor();
+    // Defer color cycle to next frame to avoid layout thrash on mobile
+    requestAnimationFrame(() => {
+      cycleColor();
+    });
   };
 
   const handleKeyDown = (e) => {

@@ -59,8 +59,7 @@ const navItems = [
   { path: '/', label: 'Home', Icon: HomeIcon },
   { path: '/rules', label: 'Rules', Icon: RulesIcon },
   { path: '/modules', label: 'Modul', Icon: ModulIcon },
-  { path: '/masteran', label: 'Masteran', Icon: MasteranIcon },
-  // { path: '/leader', label: 'Wakanit' } // Ditangguhkan sementara
+  { path: '/masteran', label: 'Masteran', Icon: MasteranIcon }
 ];
 
 const FloatingNav = () => {
@@ -71,7 +70,8 @@ const FloatingNav = () => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       return saved ? JSON.parse(saved) : {};
-    } catch {
+    } catch (e) {
+      console.warn('[Lycoris Nav] Failed to parse initial module progress from localStorage:', e);
       return {};
     }
   });
@@ -82,7 +82,9 @@ const FloatingNav = () => {
       try {
         const saved = localStorage.getItem(STORAGE_KEY);
         setModuleProgress(saved ? JSON.parse(saved) : {});
-      } catch {}
+      } catch (e) {
+        console.warn('[Lycoris Nav] Failed to read updated module progress from localStorage:', e);
+      }
     };
 
     window.addEventListener('lycoris:progress', handleProgressUpdate);
