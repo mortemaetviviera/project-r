@@ -2,6 +2,7 @@ import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import LogoIcon from '../components/LogoIcon';
 import { triggerHaptic } from '../utils/haptics';
+import { handlePointerMove } from '../utils/pointerMove';
 import { playTick, playSuccessPop } from '../utils/audio';
 import { semestersData, categoryTabs } from '../data/masteranData';
 import '../styles/MasteranPage.css';
@@ -172,6 +173,7 @@ const MasteranPage = () => {
             <div
               className="bento-box"
               key={semester.id}
+              onPointerMove={handlePointerMove}
             >
               <div className="bento-header">
                 <div className="bento-title-area">

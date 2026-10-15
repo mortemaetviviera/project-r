@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import ModuleCard from '../components/ModuleCard';
 import LogoIcon from '../components/LogoIcon';
 import { triggerHaptic } from '../utils/haptics';
+import { handlePointerMove } from '../utils/pointerMove';
 import { playTick, playSuccessPop } from '../utils/audio';
 import { linksData, STORAGE_KEY, figmaModules, psModules } from '../data/modulesData';
 import '../styles/ModulesPage.css';
@@ -122,6 +123,7 @@ const ModulesPage = () => {
           {/* Figma Track Progress */}
           <div
             className="track-progress-card figma-track"
+            onPointerMove={handlePointerMove}
           >
             <div className="track-header">
               <div className="track-icon-title">
@@ -147,6 +149,7 @@ const ModulesPage = () => {
           {/* Adobe Photoshop Track Progress */}
           <div
             className="track-progress-card photoshop-track"
+            onPointerMove={handlePointerMove}
           >
             <div className="track-header">
               <div className="track-icon-title">

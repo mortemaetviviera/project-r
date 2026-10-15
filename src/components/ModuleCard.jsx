@@ -1,9 +1,11 @@
 import React from 'react';
+import { handlePointerMove } from '../utils/pointerMove';
 
 const ModuleCard = ({ number, moduleLink, submissionLink, isCompleted, onToggleComplete }) => {
   return (
     <div
       className={`module-card ${isCompleted ? 'is-completed' : ''}`}
+      onPointerMove={handlePointerMove}
     >
       <div className="module-card-header">
         <h4>Modul {number}</h4>

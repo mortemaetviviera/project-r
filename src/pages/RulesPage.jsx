@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import LogoIcon from '../components/LogoIcon';
+import { handlePointerMove } from '../utils/pointerMove';
 import '../styles/RulesPage.css';
 
 const RulesPage = () => {
@@ -44,21 +45,21 @@ const RulesPage = () => {
       <section className="rules-section bg-darker">
         <h2 className="text-center" style={{ color: '#f2f2f2', fontWeight: '500' }}>Jadi gini rulesnya yaa</h2>
         <div className="rules-grid">
-          <div className="rule-card">
+          <div className="rule-card" onPointerMove={handlePointerMove}>
             <h3 style={{ color: '#f2f2f2', fontSize: '1.1rem' }}>TANYA AKU</h3>
             <p className="text-muted" style={{ fontSize: '0.875rem', marginTop: '0.2rem', fontWeight: '600' }}>(kalo gaa ngerti hehe)</p>
             <p style={{ marginTop: '1.5rem', fontSize: '0.75rem', color: '#94A3B8', lineHeight: '1.8' }}>
               Kapan pun tanya aku, jangan mikir aku full sibuk sampe gaa bisa diganggu yaa. aku juga lebih seneng kalo kamu nanya loh
             </p>
           </div>
-          <div className="rule-card">
+          <div className="rule-card" onPointerMove={handlePointerMove}>
             <h3 style={{ color: '#f2f2f2', fontSize: '1.1rem' }}>Waktunya 10 MINGGU</h3>
             <p className="text-muted" style={{ fontSize: '0.875rem', marginTop: '0.2rem', fontWeight: '600' }}>(loh aku padahal kkn<br/>gaa selama ini)</p>
             <p style={{ marginTop: '1.5rem', fontSize: '0.75rem', color: '#94A3B8', lineHeight: '1.8' }}>
               Jadi dalam 1 minggu kamu belajar 1 modul nih dan setiap modulnya ada tugas yaa. kerjain dan kalo selesai kumpulin di drive, pasti ku cek sama revisi nwehehe
             </p>
           </div>
-          <div className="rule-card">
+          <div className="rule-card" onPointerMove={handlePointerMove}>
             <h3 style={{ color: '#f2f2f2', fontSize: '1.1rem' }}>Kalo bingung atau revisi nih</h3>
             <p style={{ marginTop: '1.5rem', fontSize: '0.75rem', color: '#94A3B8', lineHeight: '1.8' }}>
               Kamu bisa nanya aku, bahkan aku mau kita do at least 1x per minggu khusus buat bahas belajar kamu dan revisi sampe progres tapi liat ajah yaa
